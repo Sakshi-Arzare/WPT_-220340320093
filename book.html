@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(()=>
+      {
+          console.log("no more sins");
+          $("#btn").click(() =>
+	 
+		console.log("btn is clicked");
+        
+
+
+            let input ={bookid: $("#bookid").val,bookname: $("#name"),price:$("#price")};
+            let ajaxparams = 
+            {
+                data:input,
+                url: "http://localhost:8081/addBooks",
+                type:'get',
+                datatype: "json",
+                success:(output)=>{
+                    if(output==true)
+                    {
+                        $("#msg").text("add content successfully");
+                    }
+                    else{
+                        $("#msg").text("failed to add content");
+                    }
+                   
+
+                    error:(error)=>{
+                        console.log("failed to add data " +error);
+                    }
+               
+            };
+            //console.log("function is working");
+            $.ajax(ajaxparams);
+
+        
+        
+
+	  });
+	
+	
+	
+	
+});
+
+
+	
+	
+
+
+    </script>
+</head>
+<body>
+    <input type="text" id="bookid" placeholder="book id"/>
+    <span id="msg">what happened book added or not</span>
+    <br/>
+    <input type="text" id="name" placeholder="book name"/>
+    <br/>
+    <input type="text" id="price" placeholder="price"/>
+    <br/>
+    <button id="btn"> add a book</button>
+
+</body>
+</html>
